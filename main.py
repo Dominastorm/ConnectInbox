@@ -1,10 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 import smtplib
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/result', methods = ['GET', 'POST'])
-
 def connection():
     query = request.get_json()
 
@@ -35,4 +36,4 @@ def connection():
         return {"Status" : "Failure"}
 
 if __name__ == '__main__':
-    app.run(debug=True, port=2000)
+    app.run(host='0.0.0.0', debug=True, port=2000)
